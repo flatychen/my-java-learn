@@ -1,4 +1,4 @@
-package cn.flaty.concurrent.learn;
+package cn.flaty.concurrent;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

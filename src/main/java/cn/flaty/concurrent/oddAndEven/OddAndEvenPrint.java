@@ -19,12 +19,13 @@ public class OddAndEvenPrint {
         @Override
         public void run() {
 
-            for (int i = 1; i <= max; i++) {
+            for (int i = 1; i <= max; ) {
                 try {
                     synchronized (OddAndEvenPrint.class) {
                         if (i % 2 == 1) {
                             System.out.println("奇：" + i);
                             OddAndEvenPrint.class.notify();
+                            i++;
                         } else {
                             OddAndEvenPrint.class.wait();
                         }
@@ -44,12 +45,13 @@ public class OddAndEvenPrint {
         @Override
         public void run() {
 
-            for (int i = 1; i <= max; i++) {
+            for (int i = 1; i <= max;) {
                 try {
                     synchronized (OddAndEvenPrint.class) {
                         if (i % 2 == 0) {
                             System.out.println("偶：" + i);
                             OddAndEvenPrint.class.notify();
+                            i++;
                         } else {
                             OddAndEvenPrint.class.wait();
                         }

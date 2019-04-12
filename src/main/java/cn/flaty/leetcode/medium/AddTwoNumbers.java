@@ -11,8 +11,8 @@ import org.apache.commons.lang3.RandomUtils;
 public class AddTwoNumbers {
 
     public static class ListNode {
-        int val;
-        ListNode next;
+        public int val;
+        public ListNode next;
 
         ListNode(int x) {
             val = x;
@@ -20,7 +20,20 @@ public class AddTwoNumbers {
     }
 
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public ListNode simpleCodeAdd(ListNode l1, ListNode l2) {
+        ListNode sumList = null;
+        ListNode currentSum = null;
+        int lastStep = 0;
+        while (l1 != null || l2 != null || lastStep != 0) {
+
+
+
+        }
+
+    }
+
+
+    public ListNode simpleAdd(ListNode l1, ListNode l2) {
         ListNode sumList = null;
         ListNode current1 = l1;
         ListNode current2 = l2;
@@ -82,8 +95,8 @@ public class AddTwoNumbers {
 
 
     /**
-     *
      * 产生队列
+     *
      * @param length
      * @return
      */
@@ -105,11 +118,12 @@ public class AddTwoNumbers {
 
     public static void main(String[] args) {
         AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
+
+        addTwoNumbers.genList(5);
+
         ListNode l1 = addTwoNumbers.genList(3);
         ListNode l2 = addTwoNumbers.genList(3);
-
-
-        ListNode sum = addTwoNumbers.addTwoNumbers(l1, l2);
+        ListNode sum = addTwoNumbers.simpleAdd(l1, l2);
         System.out.println(sum);
 
 

@@ -7,32 +7,58 @@ import org.apache.commons.lang3.RandomUtils;
  * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
  * Output: 7 -> 0 -> 8
  * Explanation: 342 + 465 = 807.
+ *
+ *
+ * 主要是锭表的操作
  */
 public class AddTwoNumbers {
 
     public static class ListNode {
-        public int val;
-        public ListNode next;
+        int val;
+        ListNode next;
 
-        ListNode(int x) {
+        public ListNode(int x) {
             val = x;
         }
     }
 
 
+    /**
+     *
+     * 简单代码写法
+     *
+     * 1. 链表中，给链表增加头节点是一个很重要的写法
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode simpleCodeAdd(ListNode l1, ListNode l2) {
-        ListNode sumList = null;
-        ListNode currentSum = null;
+        ListNode sumList = new ListNode(0);
+        ListNode cur = sumList;
         int lastStep = 0;
         while (l1 != null || l2 != null || lastStep != 0) {
+            int sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + lastStep;
+            lastStep = sum / 10;
+            ListNode node = new ListNode(sum % 10);
+            cur.next = node;
+            cur = cur.next;
 
-
-
+            l1 = l1 != null ? l1.next : null;
+            l2 = l2 != null ? l2.next : null;
         }
-
+        return sumList.next;
     }
 
 
+    /**
+     *
+     * 我自个的写法，太长太长了，哈哈哈
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode simpleAdd(ListNode l1, ListNode l2) {
         ListNode sumList = null;
         ListNode current1 = l1;
@@ -118,9 +144,9 @@ public class AddTwoNumbers {
 
     public static void main(String[] args) {
         AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
-
         addTwoNumbers.genList(5);
 
+        addTwoNumbers.genList(5);
         ListNode l1 = addTwoNumbers.genList(3);
         ListNode l2 = addTwoNumbers.genList(3);
         ListNode sum = addTwoNumbers.simpleAdd(l1, l2);

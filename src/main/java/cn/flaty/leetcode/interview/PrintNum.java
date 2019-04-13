@@ -16,6 +16,8 @@ public class PrintNum {
 
 
     public static void main(String[] args) {
+
+
         new PrintNum().print(1,19);
     }
 

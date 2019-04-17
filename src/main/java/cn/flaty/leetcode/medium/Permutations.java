@@ -22,6 +22,7 @@ public class Permutations {
         if (index == nums.length - 1) {
             List<Integer> one = IntStream.of(nums).boxed().collect(Collectors.toList());
             all.add(one);
+            System.out.println(Arrays.toString(one.toArray()));
             return;
         }
 
@@ -32,6 +33,9 @@ public class Permutations {
         }
 
     }
+
+
+
 
 
     public void swap(int nums[], int a, int b) {

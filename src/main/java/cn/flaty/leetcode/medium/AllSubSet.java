@@ -1,9 +1,6 @@
 package cn.flaty.leetcode.medium;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 // 全排列问题
@@ -14,16 +11,20 @@ public class AllSubSet {
 
     public void permute( int[] nums, int index) {
         // 最后一行退出
-        if (index == nums.length - 1) {
-            System.out.println(Arrays.toString(Arrays.copyOfRange(nums, index, nums.length)));
+        if (index == nums.length ) {
+            System.out.println("[]");
+            System.out.println(nums[index]);
             return;
         }
 
-        for (int i = index; i < nums.length; i++) {
-            this.swap(nums, index+1, i);
+        for (int i = index + 1 ; i < nums.length; i++) {
+            System.out.println(Arrays.toString(Arrays.copyOfRange(nums, index + 1, nums.length)));
+            this.swap(nums, index, i);
             permute( nums, index + 1);
+//            this.swap(nums, index, i);
 //            System.out.println(Arrays.toString(Arrays.copyOfRange(nums, index + 1, nums.length)));
-            this.swap(nums, index+1, i);
+//            System.out.println(Arrays.toString(Arrays.copyOfRange(nums, index + 1, nums.length)));
+//            System.out.println(Arrays.toString(Arrays.copyOfRange(nums, index + 1, nums.length)));
         }
 
     }

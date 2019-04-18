@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 // 全排列问题
 // DFS 主要来源于，树的构建
-public class PermutationsDfs {
+public class PermutationsDfs2 {
 
 
     public List<List<Integer>> permute(int[] nums) {
@@ -44,6 +44,6 @@ public class PermutationsDfs {
 
     public static void main(String[] args) {
         int[] a = IntStream.of(1, 2, 3).toArray();
-        new PermutationsDfs().permute(a);
+        new PermutationsDfs2().permute(a);
     }
 }

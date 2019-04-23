@@ -13,7 +13,7 @@ public class PermutationsSequence {
             nums[i] = i+1;
         }
         List<String> alls = new ArrayList<>(nums.length);
-        this.permute(alls, new ArrayList<>(), nums, 0,0);
+        this.permute(alls, new ArrayList<>(), nums, k,0);
         return alls.get(k-1);
     }
 
@@ -29,6 +29,8 @@ public class PermutationsSequence {
             tempList.stream().forEach(v-> sb.append(v));
             all.add(sb.toString());
             sequence ++;
+            System.out.println("::  " + sb.toString());
+            System.out.print(":: sequence  " + sequence);
             return;
         }
         for (int i = 0; i < nums.length; i++) {
@@ -47,7 +49,7 @@ public class PermutationsSequence {
 
     public static void main(String[] args) {
         int[] a = IntStream.of(1, 2, 3).toArray();
-        String r = new PermutationsSequence().PermutationsSequence(4, 9);
+        String r = new PermutationsSequence().PermutationsSequence(3, 3);
         System.out.println(r);
     }
 }

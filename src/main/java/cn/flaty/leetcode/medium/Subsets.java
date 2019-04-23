@@ -30,17 +30,15 @@ public class Subsets {
 
     public void Subsets(List<List<Integer>> all, List<Integer> tempList, int deep, int[] nums) {
         // 最后一行退出
-//        all.add(new ArrayList<>(tempList));
-
-        if (deep <= nums.length) {
+        all.add(new ArrayList<>(tempList));
+//        tempList.add();
+        if (tempList.size() == nums.length) {
             System.out.println(Arrays.toString(tempList.toArray()));
+            return;
         }
-
+        // 此处，i从树的深度开始计算.意味着，不重复计算以前的数据。
+        //
         for (int i = deep; i < nums.length; i++) {
-//            if (i > 0 && nums[i] == nums[i - 1]) {
-//                continue;
-//            }
-
             tempList.add(nums[i]);
             Subsets(all, tempList, i + 1, nums);
             tempList.remove(tempList.size() - 1);
@@ -52,7 +50,7 @@ public class Subsets {
 
 
     public static void main(String[] args) {
-        int[] a = IntStream.of(1, 2, 2).toArray();
+        int[] a = IntStream.of(1, 2).toArray();
         List<List<Integer>> data = new Subsets().Subsets(a);
         System.out.println(data);
     }

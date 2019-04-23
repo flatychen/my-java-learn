@@ -28,6 +28,7 @@ public class PermutationsDfs {
             // 实际上就是一种剪枝行为 ，去除掉已经用过的。
             if (tempList.contains(nums[i])) {
                 continue;
+
             }
             tempList.add(nums[i]);
             permute(all, tempList, nums,deep + 1);

@@ -12,25 +12,26 @@ public class PermutationsSequence {
         for (int i = 0; i < n; i++) {
             nums[i] = i+1;
         }
-        List<String> alls = new ArrayList<>(nums.length);
-        this.permute(alls, new ArrayList<>(), nums, k,0);
-        return alls.get(k-1);
+        Object alls [] = new Object[2];
+        alls[0] = new Integer(0);
+        alls[1] = "";
+
+        this.permute(alls , new ArrayList<>(), nums,k);
+        return alls[1].toString();
     }
 
 
-    public void permute(List<String> all, List<Integer> tempList, int[] nums, int k,int sequence) {
+    public void permute(Object all[], List<Integer> tempList, int[] nums,int rank) {
         // 最后一行退出
-        if (k == sequence+1) {
+        if (rank == Integer.parseInt(all[0].toString())) {
             return;
         }
 
         if (nums.length == tempList.size()) {
             StringBuilder sb = new StringBuilder();
             tempList.stream().forEach(v-> sb.append(v));
-            all.add(sb.toString());
-            sequence ++;
-            System.out.println("::  " + sb.toString());
-            System.out.print(":: sequence  " + sequence);
+            all[1] = (sb.toString());
+            all[0] = Integer.parseInt(all[0].toString()) + 1;
             return;
         }
         for (int i = 0; i < nums.length; i++) {
@@ -39,7 +40,7 @@ public class PermutationsSequence {
                 continue;
             }
             tempList.add(nums[i]);
-            permute(all, tempList, nums, k,sequence);
+            permute(all, tempList, nums,rank);
             tempList.remove(tempList.size() - 1);
 
         }
@@ -48,8 +49,7 @@ public class PermutationsSequence {
 
 
     public static void main(String[] args) {
-        int[] a = IntStream.of(1, 2, 3).toArray();
-        String r = new PermutationsSequence().PermutationsSequence(3, 3);
+        String r = new PermutationsSequence().PermutationsSequence(4, 9);
         System.out.println(r);
     }
 }

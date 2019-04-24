@@ -19,27 +19,27 @@ public class Subsets2 {
 
     public void Subsets(List<List<Integer>> all, List<Integer> tempList, int deep, int[] nums) {
         // 最后一行退出
-//        all.add(new ArrayList<>(tempList));
-//        tempList.add();
+
         if (deep == nums.length) {
-            System.out.println(Arrays.toString(tempList.toArray()));
-            return;
+            all.add(new ArrayList<>(tempList));
         }
-        // 不选任何元素
+
         Subsets(all, tempList, deep + 1, nums);
 
-        // 选一个元素
+
         tempList.add(nums[deep]);
         Subsets(all, tempList, deep + 1, nums);
 
-        //?为何要加上这句呢？ 就是回溯，返回上一个状态
+
         tempList.remove(tempList.size() - 1);
+
 
     }
 
 
     public static void main(String[] args) {
-        int[] a = IntStream.of(1, 2).toArray();
+        int[] a = IntStream.of(1, 2, 2).toArray();
         List<List<Integer>> data = new Subsets2().Subsets(a);
+        System.out.println(data);
     }
 }

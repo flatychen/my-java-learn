@@ -6,17 +6,12 @@
     <modules>
         <module>concurrent</module>
         <module>algorithm</module>
+        <module>kafka</module>
     </modules>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.8.RELEASE</version>
-    </parent>
     <groupId>cn.flaty</groupId>
     <artifactId>my-java-learn</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.0</version>
     <name>my-java-learn</name>
-    <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>1.8</java.version>

@@ -1,6 +1,7 @@
-package cn.flaty.simple;
+package cn.flaty.ack;
 
 import cn.flaty.KafkaProperties;
+import cn.hutool.core.thread.ThreadUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -9,6 +10,7 @@ import org.apache.kafka.common.PartitionInfo;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author flaty
@@ -16,13 +18,13 @@ import java.util.Properties;
  */
 
 @Slf4j
-public class SimpleProducer extends KafkaProperties {
+public class ProducerMultiMsg extends KafkaProperties {
 
 
     private String topic = "topic1";
 
     public static void main(String[] args) throws IOException {
-        new SimpleProducer().start();
+        new ProducerMultiMsg().start();
         System.in.read();
     }
 
@@ -31,11 +33,17 @@ public class SimpleProducer extends KafkaProperties {
         Properties properties = super.producerProperties();
         KafkaProducer<String, String> producer = new KafkaProducer<String, String>(properties);
         List<PartitionInfo> partitionInfos = producer.partitionsFor(topic);
-        log.info("partitionInfos:[{}]",partitionInfos);
-        producer.send(new ProducerRecord<>(topic, "key", "value"), (metadata, exception) -> {
-            log.info("metadata:[{}]",metadata);
-        });
+        log.info("partitionInfos:[{}]", partitionInfos);
+        while (true) {
+            ThreadUtil.sleep(1, TimeUnit.SECONDS);
+            ProducerRecord producerRecord = new ProducerRecord<>(topic, "key:" + System.currentTimeMillis(), "value:" + System.currentTimeMillis());
+            producer.send(producerRecord, (metadata, exception) -> {
+                // 更新状态。确保发送成功
+                log.info("metadata partition:[{}]  offset:[{}]", metadata.partition(),metadata.offset(),metadata);
+            });
+        }
     }
-
 }
+
+
 

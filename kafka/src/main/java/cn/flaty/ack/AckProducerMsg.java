@@ -18,13 +18,13 @@ import java.util.concurrent.TimeUnit;
  */
 
 @Slf4j
-public class ProducerMultiMsg extends KafkaProperties {
+public class AckProducerMsg extends KafkaProperties {
 
 
     private String topic = "topic1";
 
     public static void main(String[] args) throws IOException {
-        new ProducerMultiMsg().start();
+        new AckProducerMsg().start();
         System.in.read();
     }
 
@@ -39,6 +39,7 @@ public class ProducerMultiMsg extends KafkaProperties {
             ProducerRecord producerRecord = new ProducerRecord<>(topic, "key:" + System.currentTimeMillis(), "value:" + System.currentTimeMillis());
             producer.send(producerRecord, (metadata, exception) -> {
                 // 更新状态。确保发送成功
+                // 可保存于DB之中
                 log.info("metadata partition:[{}]  offset:[{}]", metadata.partition(),metadata.offset(),metadata);
             });
         }

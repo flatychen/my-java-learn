@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
  */
 
 @Slf4j
-public class MultiConsumer extends KafkaProperties {
+public class AckConsumer extends KafkaProperties {
 
 
     private String topic = "topic1";
@@ -30,7 +30,7 @@ public class MultiConsumer extends KafkaProperties {
 
 
     public static void main(String[] args) throws IOException {
-        new MultiConsumer().start();
+        new AckConsumer().start();
         System.in.read();
     }
 

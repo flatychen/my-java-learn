@@ -1,4 +1,4 @@
-package cn.flaty.multi;
+package cn.flaty.ack;
 
 import cn.flaty.KafkaProperties;
 import cn.hutool.core.thread.ThreadUtil;
@@ -39,6 +39,7 @@ public class MultiProducerMsg extends KafkaProperties {
             ProducerRecord producerRecord = new ProducerRecord<>(topic, "key:" + System.currentTimeMillis(), "value:" + System.currentTimeMillis());
             producer.send(producerRecord, (metadata, exception) -> {
                 // 更新状态。确保发送成功
+                // 可使用数据库状状保证
                 log.info("metadata partition:[{}]  offset:[{}]", metadata.partition(),metadata.offset(),metadata);
             });
         }

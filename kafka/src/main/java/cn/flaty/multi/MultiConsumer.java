@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -48,17 +49,18 @@ public class MultiConsumer extends KafkaProperties {
         public void run() {
             Properties properties = consumerProperties();
             properties.put(ConsumerConfig.GROUP_ID_CONFIG, "ConsumerManualCommit");
+            properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
             KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(properties);
-            consumer.partitionsFor(topic).stream().forEach(partitionInfo -> log.info("partitionInfo:[{}]", partitionInfo.toString()));
+//            consumer.partitionsFor(topic).stream().forEach(partitionInfo -> log.info("partitionInfo:[{}]", partitionInfo.toString()));
             consumer.subscribe(Arrays.asList(topic), new ConsumerRebalanceListener() {
                 @Override
                 public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
-
+                    log.info("onPartitionsRevoked");
                 }
 
                 @Override
                 public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
-
+                    log.info("onPartitionsAssigned");
                 }
             });
             while (true) {
@@ -66,6 +68,12 @@ public class MultiConsumer extends KafkaProperties {
                 for (ConsumerRecord<String, String> record : records) {
                     log.info(" #### partition:[{}] offset:[{}] record key:[{}] value:[{}]", record.partition(), record.offset(), record.key(), record.value());
                 }
+				consumer.commitAsync(new OffsetCommitCallback() {
+					@Override
+					public void onComplete(Map<TopicPartition, OffsetAndMetadata> offsets, Exception exception) {
+						log.info("onComplete:offsets:{}",offsets);
+					}
+				});
             }
         }
     }

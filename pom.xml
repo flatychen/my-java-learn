@@ -7,8 +7,7 @@
         <module>concurrent</module>
         <module>algorithm</module>
         <module>kafka</module>
-    </modules>
-    <groupId>cn.flaty</groupId>
+    </modules>    <groupId>cn.flaty</groupId>
     <artifactId>my-java-learn</artifactId>
     <version>1.0.0</version>
     <name>my-java-learn</name>

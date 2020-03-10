@@ -7,7 +7,9 @@
         <module>concurrent</module>
         <module>algorithm</module>
         <module>kafka</module>
-    </modules>    <groupId>cn.flaty</groupId>
+        <module>patterns</module>
+    </modules>
+    <groupId>cn.flaty</groupId>
     <artifactId>my-java-learn</artifactId>
     <version>1.0.0</version>
     <name>my-java-learn</name>
@@ -45,10 +47,6 @@
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
         </dependency>
-
-
-
-
 
 
     </dependencies>

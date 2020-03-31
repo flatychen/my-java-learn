@@ -7,10 +7,7 @@ package singleton;
 public class DoubleCheckSingleton {
 
 
-    /**
-     * 为了防止重排序
-     */
-    private static volatile DoubleCheckSingleton doubleCheck = null;
+    private static DoubleCheckSingleton doubleCheck = null;
 
     private DoubleCheckSingleton() {
 
@@ -20,7 +17,7 @@ public class DoubleCheckSingleton {
         if (doubleCheck == null) {
             synchronized (DoubleCheckSingleton.class) {
                 if (doubleCheck == null) {
-                    doubleCheck = new DoubleCheckSingleton();//分成三部。这里会发生重排序? 先分配内存，再初始化
+                    doubleCheck = new DoubleCheckSingleton();//分成三部。这里会发生重排序? 先分配内存，再初始化 //导致第二个线程取到空对象
                 }
             }
         }

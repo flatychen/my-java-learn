@@ -11,14 +11,14 @@ import java.util.concurrent.Executors;
 public class SyncSingleton {
 
 
-    private static SyncSingleton doubleCheck = null;
+    private static  SyncSingleton doubleCheck = null;
 
     private SyncSingleton() {
 
     }
 
     public static SyncSingleton getInstance() {
-        if (doubleCheck == null) {// 两个线程可以同时进入。并在sync加锁。第二个排队
+        if (doubleCheck == null) {// 两个线程可以同时进入。并在sync加锁。第二个线程会排队
             synchronized (SyncSingleton.class) {
                 doubleCheck = new SyncSingleton();// 有bug、第二个线程会重新初始化?如何解决？
             }

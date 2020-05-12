@@ -1,4 +1,4 @@
-package juc;
+package threadPool;
 
 import java.util.concurrent.Executors;
 

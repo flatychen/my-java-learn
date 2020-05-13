@@ -58,8 +58,8 @@ public class CountDownLatchExclusive {
     }
 
     public static void main(String[] args) {
-        int threadSize = 100;
-        ExecutorService es = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+        int threadSize = 10;
+        ExecutorService es = Executors.newFixedThreadPool(threadSize);
         CountDownLatchExclusive countDownLatchExclusive = new CountDownLatchExclusive(threadSize);
         for (int i = 0; i < threadSize; i++) {
             int finalI = i;

@@ -9,6 +9,7 @@
         <module>kafka</module>
         <module>patterns</module>
         <module>redisson</module>
+        <module>zookeeper</module>
     </modules>
     <groupId>cn.flaty</groupId>
     <artifactId>my-java-learn</artifactId>

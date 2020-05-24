@@ -12,11 +12,12 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 public abstract class ZKProperties {
 
 
-    public CuratorFramework getClient() {
+    public  CuratorFramework getAndStartClient() {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         String host = "zk.aomygod.api:2181";
-        return CuratorFrameworkFactory.newClient(host,retryPolicy);
-
+        CuratorFramework curatorFramework =  CuratorFrameworkFactory.newClient(host,retryPolicy);
+        curatorFramework.start();
+        return curatorFramework;
     }
 
 }

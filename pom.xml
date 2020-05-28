@@ -5,7 +5,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>concurrent</module>
-        <module>algorithm</module>
         <module>kafka</module>
         <module>patterns</module>
         <module>redisson</module>

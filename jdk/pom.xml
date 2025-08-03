@@ -9,22 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>redisson</artifactId>
-
+    <artifactId>jdk</artifactId>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
         <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson</artifactId>
-            <version>3.12.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>redis.embedded</groupId>
-            <artifactId>embedded-redis</artifactId>
-            <version>0.5</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.78</version>
         </dependency>
 
     </dependencies>
-
 </project>

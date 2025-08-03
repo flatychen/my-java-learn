@@ -16,7 +16,6 @@ public class CyclicBarrierTest {
     public static void main(String[] args) {
 
 
-
     }
 }
 

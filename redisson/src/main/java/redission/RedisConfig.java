@@ -10,21 +10,20 @@ import org.redisson.config.Config;
  */
 public class RedisConfig {
 
-    private String redis = "redis://redis.m1.aomygod.api:6379";
+    private String redis = "redis://127.0.0.1:6379";
+
+
 
 
     public RedissonClient getClient() {
         Config config = new Config();
-        config.useSingleServer().setAddress(redis).setPassword("aoyuan3883").
-                setConnectTimeout(1000*20).setConnectionMinimumIdleSize(1)
-        .setConnectionPoolSize(4);
+        config.useSingleServer().setAddress(redis).
+                setConnectTimeout(1000 * 20).setConnectionMinimumIdleSize(1).setConnectionPoolSize(4);
         config.setNettyThreads(2);
         config.setThreads(2);
         RedissonClient redisson = Redisson.create(config);
         return redisson;
     }
-
-
 
 
 }

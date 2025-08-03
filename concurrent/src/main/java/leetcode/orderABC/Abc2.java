@@ -12,7 +12,6 @@ public class Abc2 {
     Semaphore cSem = new Semaphore(0);
 
     int max = 3;
-    int stage = 0;
 
     @SneakyThrows
     public void printA() {

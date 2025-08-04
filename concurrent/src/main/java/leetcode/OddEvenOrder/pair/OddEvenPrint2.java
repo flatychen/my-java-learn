@@ -1,4 +1,4 @@
-package leetcode.OddEvenOrder;
+package leetcode.OddEvenOrder.pair;
 
 import lombok.SneakyThrows;
 
@@ -12,18 +12,18 @@ public class OddEvenPrint2 {
     Lock lock = new ReentrantLock();
 
     Condition con = lock.newCondition();
-    int max = 3;
+    int maxPair = 3;
     int stage = 0;
 
     @SneakyThrows
     public void printOdd() {
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i < maxPair; i++) {
             lock.lock();
             try {
-                while (stage % 2 != 0) {
+                while (stage % 2 != 1) {
                     con.await();
                 }
-                System.out.println("偶：" + stage);
+                System.out.println("奇：" + stage);
                 stage++;
                 con.signalAll();
             } finally {
@@ -35,13 +35,13 @@ public class OddEvenPrint2 {
 
     @SneakyThrows
     public void printEven() {
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i < maxPair; i++) {
             lock.lock();
             try {
-                while (stage % 2 != 1) {
+                while (stage % 2 != 0) {
                     con.await();
                 }
-                System.out.println("奇：" + stage);
+                System.out.println("偶：" + stage);
                 stage++;
                 con.signalAll();
             } finally {

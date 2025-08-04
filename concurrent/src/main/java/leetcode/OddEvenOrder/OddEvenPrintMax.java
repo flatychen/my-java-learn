@@ -4,21 +4,19 @@ import lombok.SneakyThrows;
 
 import java.util.concurrent.Semaphore;
 
-public class OddEvenPrint3 {
+public class OddEvenPrintMax {
 
 
-    Semaphore oddSem = new Semaphore(1);
-    Semaphore evenSem = new Semaphore(0);
+    Semaphore evenSem = new Semaphore(1);
+    Semaphore oddSem = new Semaphore(0);
 
-    int max = 3;
-    int stage = 0;
+    int max = 4;
 
     @SneakyThrows
     public void printOdd() {
-        for (int i = 0; i < max; i++) {
+        for (int i = 1; i <= max; i=i+2) {
             oddSem.acquire();
-            System.out.println("偶：" + stage);
-            stage++;
+            System.out.println("奇：" + i);
             evenSem.release();
 
         }
@@ -26,17 +24,16 @@ public class OddEvenPrint3 {
 
     @SneakyThrows
     public void printEven() {
-        for (int i = 0; i < max; i++) {
+        for (int i = 0; i <= max;i=i+2) {
             evenSem.acquire();
-            System.out.println("奇：" + stage);
-            stage++;
+            System.out.println("偶：" + i);
             oddSem.release();
         }
     }
 
 
     public static void main(String[] args) {
-        OddEvenPrint3 oddEvenPrint3 = new OddEvenPrint3();
+        OddEvenPrintMax oddEvenPrint3 = new OddEvenPrintMax();
         new Thread(oddEvenPrint3::printEven).start();
         new Thread(oddEvenPrint3::printOdd).start();
     }

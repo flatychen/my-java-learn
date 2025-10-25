@@ -13,7 +13,7 @@ public class ZeroEvenOdd {
     // 0 1 0 2 0 3
     @SneakyThrows
     public synchronized void printZero() {
-        for (int i = 0; i < max; i ++) {
+        for (int i = 0; i < max; i++) {
             while (!needPrintZero) {
                 wait();
             }

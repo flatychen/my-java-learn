@@ -30,6 +30,7 @@ public class Singleton {
             es.execute(() -> System.out.println(Singleton.getInstance().toString()));
         }
         System.in.read();
+
     }
 }
 
